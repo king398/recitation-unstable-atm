@@ -88,3 +88,15 @@ TEST_CASE("Negative widthdraw", "[withdraw]") {
   REQUIRE_THROWS(atm.WithdrawCash(12345678, 1234, -20));
   
 }
+TEST_CASE("Deposit check", "[deposit]") {
+  Atm atm;
+  atm.RegisterAccount(12345678, 1234, "Samdeposit Sepiol", 300.0);
+  atm.DepositCash(12345678, 1234,100.0);
+  REQUIRE(atm.CheckBalance(12345678, 1234)==400.0);
+  
+}
+TEST_CASE("Ledger for non existent account", "[ledger]") {
+  Atm atm;
+  REQUIRE_THROWS(atm.PrintLedger("output.txt",12345678,1234));
+  
+}
